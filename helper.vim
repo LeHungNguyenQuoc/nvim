@@ -18,6 +18,8 @@ function! HandleVisualSelection(direction, extra_filter) range
         call CmdLine("Grepper -noprompt -noopen -query '" . l:pattern . "' '" . l:dir . "'\<left>" )
     elseif a:direction == 'GrepperFunction'
         call CmdLine("Grepper -tool rg -noprompt -query 'def " . l:pattern . "'\<cr>" )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/'. l:pattern)
     endif
 
     let @/ = l:pattern

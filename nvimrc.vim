@@ -48,6 +48,7 @@ set number
 set autoindent
 set smartcase
 set nowrap
+set modifiable
 "
 " customize verical bar 
 set fillchars=diff:⣿,vert:│
@@ -103,7 +104,7 @@ nnoremap <leader>g :Grepper<cr>
 nnoremap <leader>G :Grepper -quickfix -open<cr>
 vnoremap <silent> <leader>gp :call HandleVisualSelection('GrepperInDir', '')<cr>
 vnoremap <silent> gdf :call HandleVisualSelection('GrepperFunction', '')<cr>
-vnoremap <silent> <leader>h :call VisualSelection('replace', '')<cr><cr>
+vnoremap <silent> <leader>h :call HandleVisualSelection('replace', '')<cr><cr>
 
 nmap gs <plug>(GrepperOperator)
 nmap gu viw<plug>(GrepperOperator)
@@ -264,8 +265,11 @@ nnoremap <silent> <Leader>ts :tselect<CR>
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 " TIG
-nnoremap TS :!tig status<cr><cr>
-nnoremap TB :!tig blame %<cr><cr>
-nnoremap TL :!tig log %<cr><cr>
+nnoremap TS :vs term://tig status<cr><cr>
+nnoremap TB :vs term://tig blame<cr><cr>
+nnoremap TL :vs term://tig log %<cr><cr>
 
-nnoremap GB :Gblame<cr>
+nnoremap <silent> GB :Gblame<cr>
+nnoremap <silent> GS :Gstatus<cr>
+nnoremap <silent> GS :Gstatus<cr>
+nnoremap <silent> GD :Gdiff<cr>
