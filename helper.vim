@@ -25,3 +25,43 @@ function! HandleVisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+function! HandleVisualSelectionCommand(cmd, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    call CmdLine("%s" . '/'. l:pattern . '/'. l:pattern)
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+"
+" My Operator {{{1
+function! s:myOperator(type) abort
+  let regsave = @@
+  let selsave = &selection
+  let &selection = 'inclusive'
+
+  if a:type =~? 'v'
+    silent execute "normal! gvy"
+  elseif a:type == 'line'
+    silent execute "normal! '[V']y"
+  else
+    silent execute "normal! `[v`]y"
+  endif
+
+  let &selection = selsave
+  let flags = s:get_config().operator
+  let flags.query_orig = @@
+  let flags.query_escaped = 0
+
+  let flags.query = s:escape_query(flags, @@)
+  if s:get_current_tool_name(flags) != 'findstr'
+    let flags.query = '-- '. flags.query
+  endif
+  let @@ = regsave
+
+  return s:start(flags)
+endfunction

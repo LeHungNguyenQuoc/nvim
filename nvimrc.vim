@@ -24,6 +24,7 @@ let $FZF_DEFAULT_OPTS .= ' --no-height'
 """"""""""""""""""""""""""""""""""""""""""
 noremap <leader>- :split<cr>
 noremap <leader>\ :vs<cr>
+noremap <leader>* :noh<cr>
 " Auto remove trailing space
 autocmd FileType ruby,javascript,eruby autocmd BufWritePre <buffer> %s/\s\+$//e
 
@@ -60,6 +61,18 @@ nnoremap <leader>W :wq!<cr>
 nnoremap <leader>q :bdelete!<cr>
 nnoremap <leader>z :q!<cr>
 
+" Disable Arrow keys in Escape mode
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
+" Disable Arrow keys in Insert mode
+
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 "
 """"""""""""""""""""""""""""""""""""""""""
 "  Nerd Tree
@@ -104,7 +117,7 @@ nnoremap <leader>g :Grepper<cr>
 nnoremap <leader>G :Grepper -quickfix -open<cr>
 vnoremap <silent> <leader>gp :call HandleVisualSelection('GrepperInDir', '')<cr>
 vnoremap <silent> gdf :call HandleVisualSelection('GrepperFunction', '')<cr>
-vnoremap <silent> <leader>h :call HandleVisualSelection('replace', '')<cr><cr>
+vnoremap <silent> <leader>h :call HandleVisualSelectionCommand('replace', '')<cr><cr>
 
 nmap gs <plug>(GrepperOperator)
 nmap gu viw<plug>(GrepperOperator)
@@ -258,6 +271,10 @@ nnoremap <leader>a :!atom %<cr><cr>
 nnoremap <silent> <Leader>tn :tnext<CR>
 nnoremap <silent> <Leader>tp :tprevious<CR>
 nnoremap <silent> <Leader>ts :tselect<CR>
+
+
+" TagBar
+nmap <C-\> :TagbarToggle<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GIT CONFIG
