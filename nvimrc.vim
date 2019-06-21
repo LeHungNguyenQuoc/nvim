@@ -11,6 +11,11 @@ augroup MyAutoCmd
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""
+" Easy Align
+""""""""""""""""""""""""""""""""""""""""""
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <leader>f :FZF<cr>
@@ -53,7 +58,6 @@ set modifiable
 "
 " customize verical bar 
 set fillchars=diff:⣿,vert:│
-nnoremap <leader>e :b#<cr>
 
 " Quick save & edit
 nnoremap <leader>w :w!<cr>
@@ -75,14 +79,20 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 "
 """"""""""""""""""""""""""""""""""""""""""
-"  Nerd Tree
+"  Vim Test 
 """"""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "left"
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
-map <leader>nt :NERDTreeToggle<cr>
-map <leader>nf :NERDTreeFind<cr>
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+let test#ruby#bundle_exec = 1
+
+if has('nvim')
+  let test#strategy = "neovim"
+  tmap <C-o> <C-\><C-n>
+endif
 
 """"""""""""""""""""""""""""""""""""""""""
 " Copy / cut to clipboard
@@ -236,8 +246,9 @@ set completeopt-=preview
 set complete=.,w,b,u,t,k
 set complete-=t
 set pumheight=20                " Set popup menu max height"
-imap <Tab> <C-N>
-imap <S-Tab> <C-P>
+inoremap <Tab> <C-N>
+inoremap <S-Tab> <C-P>
+inoremap <C-]> <C-X><C-]>
 "
 """""""""""""""""""""""""""""""""""""""""""
 " LOCATION LIST & QUICK FIX
@@ -254,18 +265,17 @@ nnoremap <leader>cq :cclose<cr>
 """""""""""""""""""""""""""""""""""""""""""
 " Navigating vs BUFFER
  """""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>tl :bnext<cr>
-nnoremap <leader>th :bprevious<cr>
 nnoremap <leader>tq :bdelete!<cr>
 nnoremap <leader>to :tabonly<cr>:BufOnly!<cr>
+nnoremap <leader>e :b#<cr>
+nnoremap <leader>p :bprevious<cr>
+nnoremap <leader>n :bnext<cr>
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
-" Open on ATOM
-nnoremap <leader>a :!atom %<cr><cr>
 
 " Ctags
 nnoremap <silent> <Leader>tn :tnext<CR>
