@@ -18,10 +18,10 @@ nmap ga <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <leader>f :FZF<cr>
-nnoremap <silent> <leader>m :History<cr>
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>F :FZF ~<cr>
+nnoremap <silent> <leader>f :FZF --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
+nnoremap <silent> <leader>m :History --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
+nnoremap <silent> <leader>b :Buffers --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
+nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 let $FZF_DEFAULT_OPTS .= ' --no-height'
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -173,8 +173,11 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""
 " COLOR & THEME
 """"""""""""""""""""""""""""""""""""""""""""
-colorscheme dracula
-syntax on
+syntax enable
+set background=light
+colorscheme solarized8
+" colorscheme dracula
+" syntax on
 " if has("mac") || has("macunix")
 "   set guifont=Monaco\ for\ Powerline:h24
 " elseif has("win32") || has("win64")
@@ -214,7 +217,7 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_theme='simple'
+let g:airline_theme='snow_light'
 "
 " unicode symbols
 let g:airline_left_sep = '»'
