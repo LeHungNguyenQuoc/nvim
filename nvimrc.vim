@@ -58,7 +58,9 @@ set modifiable
 "
 " customize verical bar 
 set fillchars=diff:⣿,vert:│
+set fillchars+=vert:⣿
 
+"
 " Quick save & edit
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>W :wq!<cr>
@@ -271,8 +273,8 @@ nnoremap <leader>cq :cclose<cr>
 nnoremap <leader>tq :bdelete!<cr>
 nnoremap <leader>to :tabonly<cr>:BufOnly!<cr>
 nnoremap <leader>e :b#<cr>
-nnoremap <leader>p :bprevious<cr>
-nnoremap <leader>n :bnext<cr>
+nnoremap <leader>[ :bprevious<cr>
+nnoremap <leader>] :bnext<cr>
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
