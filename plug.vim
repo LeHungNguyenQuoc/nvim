@@ -31,4 +31,5 @@ Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-abolish'
 Plug 'altercation/vim-colors-solarized'
+" Plug 'easymotion/vim-easymotion'
 call plug#end()
