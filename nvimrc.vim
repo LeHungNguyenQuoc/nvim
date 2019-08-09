@@ -105,6 +105,7 @@ xmap <leader>d "+d
 
 "Filename to clipboard
 nmap <leader>cp :let @*=expand("%")<CR>
+nmap <leader>ct :let @*="bin/bundle exec rspec ".expand("%")<CR>
 "nmap <c-l> :let @*=expand("%:p")<CR>
 
 " Copy yanked text to clipboard
