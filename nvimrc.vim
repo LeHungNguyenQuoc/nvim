@@ -25,6 +25,10 @@ nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,h
 let $FZF_DEFAULT_OPTS .= ' --no-height'
 
 """"""""""""""""""""""""""""""""""""""""""
+" Common rails mapping
+""""""""""""""""""""""""""""""""""""""""""
+noremap <leader>tt :vs<cr><C-W>l:A<cr><C-W>h
+""""""""""""""""""""""""""""""""""""""""""
 " Common mapping
 """"""""""""""""""""""""""""""""""""""""""
 noremap <leader>- :split<cr>
