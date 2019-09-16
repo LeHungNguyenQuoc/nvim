@@ -20,9 +20,10 @@ nmap ga <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <leader>f :FZF --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 nnoremap <silent> <leader>m :History --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
-nnoremap <silent> <leader>b :Buffers --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
+nnoremap <silent> <leader>b :Buffers <cr>
 nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 let $FZF_DEFAULT_OPTS .= ' --no-height'
+let g:coc_node_path='/Users/quocle/.nvm/versions/node/v12.9.1/bin/node'
 
 """"""""""""""""""""""""""""""""""""""""""
 " Common rails mapping
