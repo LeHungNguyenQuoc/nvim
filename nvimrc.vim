@@ -10,6 +10,9 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+nmap <silent> gd <Plug>(coc-definition)
+
 """"""""""""""""""""""""""""""""""""""""""
 " Easy Align
 """"""""""""""""""""""""""""""""""""""""""
@@ -32,6 +35,9 @@ noremap <leader>tt :vs<cr><C-W>l:A<cr><C-W>h
 """"""""""""""""""""""""""""""""""""""""""
 " Common mapping
 """"""""""""""""""""""""""""""""""""""""""
+" Replace
+vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
+" Split
 noremap <leader>- :split<cr>
 noremap <leader>\ :vs<cr>
 noremap <leader>* :noh<cr>
@@ -86,6 +92,12 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 "
 """"""""""""""""""""""""""""""""""""""""""
+"  Vim Terraform 
+""""""""""""""""""""""""""""""""""""""""""
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+""""""""""""""""""""""""""""""""""""""""""
 "  Vim Test 
 """"""""""""""""""""""""""""""""""""""""""
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -134,19 +146,16 @@ nnoremap <silent> c=V :set<Plug>PeepOpenaste<CR>"+P:set nopaste<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>g :Grepper<cr>
 nnoremap <leader>G :Grepper -quickfix -open<cr>
-vnoremap <silent> <leader>gp :call HandleVisualSelection('GrepperInDir', '')<cr>
-vnoremap <silent> gdf :call HandleVisualSelection('GrepperFunction', '')<cr>
-vnoremap <silent> <leader>h :call HandleVisualSelectionCommand('replace', '')<cr><cr>
+" vnoremap <silent> <leader>gp :call HandleVisualSelection('GrepperInDir', '')<cr>
+" vnoremap <silent> gdf :call HandleVisualSelection('GrepperFunction', '')<cr>
+" vnoremap <silent> <leader>h :call HandleVisualSelectionCommand('replace', '')<cr><cr>
 
-nmap gs <plug>(GrepperOperator)
-nmap gu viw<plug>(GrepperOperator)
+nmap gu *viw<plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
-
-nmap gis viw<plug>(GrepperOperator)
 
 " Optional. The default behaviour should work for most users.
 let g:grepper               = {}
-let g:grepper.tools         = ['rg', 'git', 'ag']
+let g:grepper.tools         = ['git' ,'rg', 'ag']
 let g:grepper.jump          = 0
 let g:grepper.quickfix          = 0
 let g:grepper.next_tool     = '<leader>g'
@@ -185,8 +194,9 @@ augroup END
 syntax enable
 set background=light
 colorscheme solarized8
+" set background=dark
 " colorscheme dracula
-" syntax on
+" " syntax on
 " if has("mac") || has("macunix")
 "   set guifont=Monaco\ for\ Powerline:h24
 " elseif has("win32") || has("win64")
@@ -250,6 +260,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+let g:airline#extensions#coc#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COMPLETER 
