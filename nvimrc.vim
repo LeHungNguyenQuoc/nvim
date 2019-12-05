@@ -35,12 +35,16 @@ noremap <leader>tt :vs<cr><C-W>l:A<cr><C-W>h
 """"""""""""""""""""""""""""""""""""""""""
 " Common mapping
 """"""""""""""""""""""""""""""""""""""""""
+" Search
+vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>N
+nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>N
 " Replace
 vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
 " Split
 noremap <leader>- :split<cr>
 noremap <leader>\ :vs<cr>
 noremap <leader>* :noh<cr>
+
 " Auto remove trailing space
 autocmd FileType ruby,javascript,eruby autocmd BufWritePre <buffer> %s/\s\+$//e
 
