@@ -40,6 +40,7 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>N
 nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>N
 " Replace
 vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
+xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/gc<space><bar><space>update
 " Split
 noremap <leader>- :split<cr>
 noremap <leader>\ :vs<cr>
