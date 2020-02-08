@@ -27,6 +27,7 @@ nnoremap <silent> <leader>b :Buffers <cr>
 nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 let $FZF_DEFAULT_OPTS .= ' --no-height'
 let g:coc_node_path='/Users/quocle/.nvm/versions/node/v12.9.1/bin/node'
+let g:coc_global_extensions = ['coc-solargraph']
 
 """"""""""""""""""""""""""""""""""""""""""
 " Common rails mapping
@@ -36,11 +37,12 @@ noremap <leader>tt :vs<cr><C-W>l:A<cr><C-W>h
 " Common mapping
 """"""""""""""""""""""""""""""""""""""""""
 " Search
-vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>N
-nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>N
+vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
+nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
 " Replace
 vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
 xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/gc<space><bar><space>update
+" nnoremap <leader>G :Grepper -quickfix -open<cr>
 " Split
 noremap <leader>- :split<cr>
 noremap <leader>\ :vs<cr>
@@ -157,6 +159,7 @@ nnoremap <leader>G :Grepper -quickfix -open<cr>
 
 nmap gu *viw<plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
+" nmap gs <plug>(GrepperOperator)
 
 " Optional. The default behaviour should work for most users.
 let g:grepper               = {}
