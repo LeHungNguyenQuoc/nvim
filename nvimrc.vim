@@ -13,6 +13,14 @@ augroup END
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nmap <silent> gd <Plug>(coc-definition)
 
+noremap <C-t> :Switch<cr>
+vnoremap <C-t> :Switch<cr>
+
+" Auto save
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+
 """"""""""""""""""""""""""""""""""""""""""
 " Easy Align
 """"""""""""""""""""""""""""""""""""""""""
@@ -21,7 +29,8 @@ nmap ga <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <leader>f :FZF --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
+nnoremap gd *:FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33 -q <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent> <leader>f :FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 nnoremap <silent> <leader>m :History --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
 nnoremap <silent> <leader>b :Buffers <cr>
 nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
@@ -41,7 +50,7 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
 nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
 " Replace
 vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
-xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/gc<space><bar><space>update
+vnoremap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/gc<space><bar><space>update
 " nnoremap <leader>G :Grepper -quickfix -open<cr>
 " Split
 noremap <leader>- :split<cr>
@@ -49,7 +58,7 @@ noremap <leader>\ :vs<cr>
 noremap <leader>* :noh<cr>
 
 " Auto remove trailing space
-autocmd FileType ruby,javascript,eruby autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType ruby,javascript,eruby,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 au BufNewFile,BufRead *.hamlc   set filetype=haml
 set nofoldenable
@@ -71,7 +80,7 @@ set ignorecase
 set number
 set autoindent
 set smartcase
-set nowrap
+set wrap
 set modifiable
 "
 " customize verical bar 
@@ -107,40 +116,124 @@ let g:terraform_fmt_on_save=1
 """"""""""""""""""""""""""""""""""""""""""
 "  Vim Test 
 """"""""""""""""""""""""""""""""""""""""""
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
+" nmap <silent> t<C-n> :TestNearest<CR>
+" nmap <silent> t<C-f> :TestFile<CR>
+" nmap <silent> t<C-s> :TestSuite<CR>
+" nmap <silent> t<C-l> :TestLast<CR>
+" nmap <silent> t<C-g> :TestVisit<CR>
 
-let test#ruby#bundle_exec = 1
+" let test#ruby#bundle_exec = 1
 
-if has('nvim')
-  let test#strategy = "neovim"
-  tmap <C-o> <C-\><C-n>
-endif
+" if has('nvim')
+"   let test#strategy = "neovim"
+"   tmap <C-o> <C-\><C-n>
+" endif
+
+""""""""""""""""""""""""""""""""""""""""""
+" any-jump.vim
+""""""""""""""""""""""""""""""""""""""""""
+" Jump to definition under cursore
+nnoremap <leader>aj :AnyJump<CR>
+
+" Visual mode: jump to selected text in visual mode
+xnoremap <leader>aj :AnyJumpVisual<CR>
+
+" open previous opened file (after jump)
+nnoremap <leader>ab :AnyJumpBack<CR>
+
+" open last closed search window again
+nnoremap <leader>al :AnyJumpLastResults<CR>
+
+let g:any_jump_disable_default_keybindings = 1
+
+" Show line numbers in search rusults
+let g:any_jump_list_numbers = 0
+
+" Auto search references
+let g:any_jump_references_enabled = 1
+
+" Auto group results by filename
+let g:any_jump_grouping_enabled = 0
+
+" Amount of preview lines for each search result
+let g:any_jump_preview_lines_count = 5
+
+" Max search results, other results can be opened via [a]
+let g:any_jump_max_search_results = 10
+
+" Prefered search engine: rg or ag
+let g:any_jump_search_prefered_engine = 'rg'
+
+
+" Search results list styles:
+" - 'filename_first'
+" - 'filename_last'
+let g:any_jump_results_ui_style = 'filename_first'
+
+" Any-jump window size & position options
+let g:any_jump_window_width_ratio  = 0.6
+let g:any_jump_window_height_ratio = 0.6
+let g:any_jump_window_top_offset   = 4
+
+" Customize any-jump colors with extending default color scheme:
+let g:any_jump_colors = { "help": "Comment" }
+
+" Or override all default colors
+let g:any_jump_colors = {
+      \"plain_text":         "Comment",
+      \"preview":            "Comment",
+      \"preview_keyword":    "Operator",
+      \"heading_text":       "Function",
+      \"heading_keyword":    "Identifier",
+      \"group_text":         "Comment",
+      \"group_name":         "Function",
+      \"more_button":        "Operator",
+      \"more_explain":       "Comment",
+      \"result_line_number": "Comment",
+      \"result_text":        "Statement",
+      \"result_path":        "String",
+      \"help":               "Comment"
+      \}
+
+" Disable default any-jump keybindings (default: 0)
+let g:any_jump_disable_default_keybindings = 1
+
+" Remove comments line from search results (default: 1)
+let g:any_jump_remove_comments_from_results = 1
+
+" Custom ignore files
+" default is: ['*.tmp', '*.temp']
+let g:any_jump_ignored_files = ['*.tmp', '*.temp']
+
+" Search references only for current file type
+" (default: false, so will find keyword in all filetypes)
+let g:any_jump_references_only_for_current_filetype = 0
+
+" Disable search engine ignore vcs untracked files
+" (default: false, search engine will ignore vcs untracked files)
+let g:any_jump_disable_vcs_ignore = 0
 
 """"""""""""""""""""""""""""""""""""""""""
 " Copy / cut to clipboard
 """"""""""""""""""""""""""""""""""""""""""
-nmap <leader>c "+y
-nmap <leader>d "+d
+noremap <leader>o "+y
+noremap <leader>d "+d
 
-xmap <leader>c "+y
-xmap <leader>d "+d
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
 
 "Filename to clipboard
-nmap <leader>cp :let @*=expand("%")<CR>
-nmap <leader>ct :let @*="bin/bundle exec rspec ".expand("%")<CR>
-nmap <leader>cu :let @*="bin/bundle exec cucumber ".expand("%")<CR>
+noremap <leader>cp :let @*=expand("%")<CR>
+noremap <leader>ct :let @*="bin/bundle exec rspec ".expand("%")<CR>
+noremap <leader>cu :let @*="bin/bundle exec cucumber ".expand("%")<CR>
 "nmap <c-l> :let @*=expand("%:p")<CR>
 
 " Copy yanked text to clipboard
 nnoremap <silent> cY :let [@+, @*] = [@", @"]<CR>
 
 " Paste from clipboard
-nnoremap <silent> cp  "+p
-nnoremap <silent> cP  "+P
+nnoremap <C-p>  "+p
+nnoremap <C-P>  "+P
 nnoremap <silent> cgp "+gp
 nnoremap <silent> cgP "+gP
 nnoremap <silent> c=p o<Esc>"+pm``[=`]``^
@@ -199,9 +292,10 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""
 " COLOR & THEME
 """"""""""""""""""""""""""""""""""""""""""""
-syntax enable
+" syntax enable
 set background=light
-colorscheme solarized8
+highlight VertSplit cterm=NONE
+colorscheme solarized8_flat
 " set background=dark
 " colorscheme dracula
 " " syntax on
@@ -286,8 +380,8 @@ inoremap <C-]> <C-X><C-]>
 """""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ll :lopen<cr>
 nnoremap <leader>lq :lclose<cr>
-nnoremap <leader>ln :ln<cr>
-nnoremap <leader>lp :lp<cr>
+nnoremap <leader>ln :lnext<cr>
+nnoremap <leader>lp :lprevious<cr>
 
 nnoremap <leader>cc :botright cope<cr>
 nnoremap <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
@@ -300,7 +394,7 @@ nnoremap <leader>tq :bdelete!<cr>
 nnoremap <leader>to :tabonly<cr>:BufOnly!<cr>
 nnoremap <leader>e :b#<cr>
 nnoremap <leader>[ :bprevious<cr>
-nnoremap <leader>] :bnext<cr>
+nnoremap <Leader>] :bnext<cr>
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -315,7 +409,7 @@ nnoremap <silent> <Leader>ts :tselect<CR>
 
 
 " TagBar
-nmap <C-\> :TagbarToggle<CR>
+" nmap <C-\> :TagbarToggle<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GIT CONFIG
