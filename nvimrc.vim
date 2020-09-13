@@ -409,7 +409,7 @@ nnoremap <silent> <Leader>ts :tselect<CR>
 
 
 " TagBar
-" nmap <C-\> :TagbarToggle<CR>
+nmap <C-\> :TagbarToggle<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GIT CONFIG
