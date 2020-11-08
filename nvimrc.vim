@@ -19,7 +19,7 @@ vnoremap <C-t> :Switch<cr>
 " Auto save
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
+set encoding=UTF-8
 
 """"""""""""""""""""""""""""""""""""""""""
 " Easy Align
@@ -46,6 +46,7 @@ noremap <leader>tt :vs<cr><C-W>l:A<cr><C-W>h
 " Common mapping
 """"""""""""""""""""""""""""""""""""""""""
 " Search
+"
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
 nnoremap * yiw/\V<C-R>=escape(@",'/\')<CR><CR>Nzz
 " Replace
@@ -77,7 +78,6 @@ let &titlestring = @%
 set title
 set noswapfile
 set ignorecase
-set number
 set autoindent
 set smartcase
 set wrap
@@ -85,8 +85,10 @@ set modifiable
 "
 " customize verical bar 
 set fillchars=diff:⣿,vert:│
-set fillchars+=vert:⣿
-
+set fillchars+=vert:│
+" hi VertSplit ctermbg=NONE guibg=NONE ctermfg=Green guifg=#839289
+autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Blue ctermbg=NONE
+" hi NonText ctermfg=darkcyan guifg=darkcyan
 "
 " Quick save & edit
 nnoremap <leader>w :w!<cr>
@@ -293,8 +295,9 @@ augroup END
 " COLOR & THEME
 """"""""""""""""""""""""""""""""""""""""""""
 " syntax enable
-set background=light
 highlight VertSplit cterm=NONE
+" syntax enable
+set background=light
 colorscheme solarized8_flat
 " set background=dark
 " colorscheme dracula

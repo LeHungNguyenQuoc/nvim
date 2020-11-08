@@ -35,10 +35,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-abolish'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'hashivim/vim-terraform'
 Plug 'pechorin/any-jump.vim'
 Plug 'AndrewRadev/switch.vim'
+" Plug 'ryanoasis/vim-devicons'
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'easymotion/vim-easymotion'
+"
 call plug#end()
