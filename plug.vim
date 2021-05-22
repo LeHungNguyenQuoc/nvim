@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 " Plug 'pangloss/vim-javascript'
@@ -9,7 +10,7 @@ Plug 'tpope/vim-rsi'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-unimpaired'
-" Plug 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-endwise'
 Plug 'mhinz/vim-startify'
@@ -39,6 +40,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'hashivim/vim-terraform'
 Plug 'pechorin/any-jump.vim'
 Plug 'AndrewRadev/switch.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'uplus/deoplete-solargraph'
+
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'easymotion/vim-easymotion'

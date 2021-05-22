@@ -10,16 +10,12 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nmap <silent> gd <Plug>(coc-definition)
-
 noremap <C-t> :Switch<cr>
 vnoremap <C-t> :Switch<cr>
 
 " Auto save
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
-set encoding=UTF-8
 
 """"""""""""""""""""""""""""""""""""""""""
 " Easy Align
@@ -30,13 +26,29 @@ nmap ga <Plug>(EasyAlign)
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
 nnoremap gd *:FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33 -q <C-R>=expand("<cword>")<CR><CR>
-nnoremap <silent> <leader>f :FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
-nnoremap <silent> <leader>m :History --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
-nnoremap <silent> <leader>b :Buffers <cr>
-nnoremap <silent> <leader>F :FZF ~ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33<cr>
-let $FZF_DEFAULT_OPTS .= ' --no-height'
-let g:coc_node_path='/Users/quocle/.nvm/versions/node/v12.9.1/bin/node'
-let g:coc_global_extensions = ['coc-solargraph']
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>m :History<cr>
+nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>B :Windows<cr>
+nnoremap <silent> <leader>F :FZF ~ <cr>
+let g:fzf_layout = { 'down': '~30%' }
+let $FZF_DEFAULT_OPTS .= ' --no-height --color fg:239,bg:230,hl:33,fg+:241,bg+:221,hl+:33 --color info:33,prompt:33,pointer:166,marker:166,spinner:33'
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
+" let g:coc_node_path='/Users/quocle/.nvm/versions/node/v12.9.1/bin/node'
+" let g:coc_global_extensions = ['coc-solargraph']
 
 """"""""""""""""""""""""""""""""""""""""""
 " Common rails mapping
@@ -367,16 +379,22 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#coc#enabled = 1
 
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" nmap <silent> gd <Plug>(coc-definition)
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COMPLETER 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 set complete=.,w,b,u,t,k
 set complete-=t
 set pumheight=20                " Set popup menu max height"
 inoremap <Tab> <C-N>
 inoremap <S-Tab> <C-P>
-inoremap <C-]> <C-X><C-]>
+" inoremap <C-]> <C-X><C-]>
+
 "
 """""""""""""""""""""""""""""""""""""""""""
 " LOCATION LIST & QUICK FIX
