@@ -32,24 +32,17 @@ nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>B :Windows<cr>
 nnoremap <silent> <leader>F :FZF ~ <cr>
 let g:fzf_layout = { 'down': '~30%' }
-let $FZF_DEFAULT_OPTS .= ' --no-height --color fg:239,bg:230,hl:33,fg+:241,bg+:221,hl+:33 --color info:33,prompt:33,pointer:166,marker:166,spinner:33'
-" let g:fzf_colors =
-" \ { 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'border':  ['fg', 'Ignore'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
+let $FZF_DEFAULT_OPTS .= "
+      \ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33
+      \ --color info:33,prompt:33,pointer:166,marker:166,spinner:33"
+
+      " \ --color fg:-1,bg:-1,hl:33,fg+:235,bg+:254,hl+:33
+      " \ --color info:136,prompt:136,pointer:230,marker:230,spinner:136"
 " let g:coc_node_path='/Users/quocle/.nvm/versions/node/v12.9.1/bin/node'
 " let g:coc_global_extensions = ['coc-solargraph']
 
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 """"""""""""""""""""""""""""""""""""""""""
 " Common rails mapping
 """"""""""""""""""""""""""""""""""""""""""
@@ -306,11 +299,17 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""
 " COLOR & THEME
 """"""""""""""""""""""""""""""""""""""""""""
-" syntax enable
+syntax enable
+set background=light
+colorscheme solarized8
+let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+
 highlight VertSplit cterm=NONE
 " syntax enable
-set background=light
-colorscheme solarized8_flat
+" set background=light
+" colorscheme solarized8_flat
 " set background=dark
 " colorscheme dracula
 " " syntax on
@@ -345,43 +344,50 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""
 " AIRLINE
 """""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_theme='snow_light'
-"
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline#extensions#tabline#enabled = 0
+"let g:airline#extensions#tabline#show_splits = 0
+"let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline_statusline_ontop=1
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"let g:airline_theme='solarized'
+""
+"" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
 
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline#extensions#coc#enabled = 1
+"" airline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
+" let g:airline#extensions#coc#enabled = 1
 
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nmap <silent> gd <Plug>(coc-definition)
 
+" Customize statusline colors 
+hi StatusLine ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
+hi StatusLineNC ctermbg=250 ctermfg=254 guibg=#d0d0d0 guifg=#444444
+
+" hi StatusLine ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
+" hi StatusLineNC ctermbg=252 ctermfg=238 guibg=#d0d0d0 guifg=#444444
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COMPLETER 
