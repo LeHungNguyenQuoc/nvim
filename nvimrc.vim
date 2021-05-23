@@ -230,9 +230,9 @@ vnoremap <C-c> "+y
 vnoremap <C-d> "+d
 
 "Filename to clipboard
-noremap <leader>cp :let @*=expand("%")<CR>
-noremap <leader>ct :let @*="bin/bundle exec rspec ".expand("%")<CR>
-noremap <leader>cu :let @*="bin/bundle exec cucumber ".expand("%")<CR>
+noremap <silent> <leader>cp :let @*=expand("%")<CR>
+noremap <silent> <leader>ct :let @*="bin/bundle exec rspec ".join([expand("%"), line(".")], ":")<CR>
+noremap <silent> <leader>cu :let @*="bin/bundle exec cucumber ".join([expand("%"), line(".")], ":")<CR>
 "nmap <c-l> :let @*=expand("%:p")<CR>
 
 " Copy yanked text to clipboard
