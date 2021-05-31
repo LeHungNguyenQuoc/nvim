@@ -25,7 +25,8 @@ nmap ga <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
-nnoremap gd *:FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33 -q <C-R>=expand("<cword>")<CR><CR>
+" nnoremap gd *:FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33 -q <C-R>=expand("<cword>")<CR><CR>
+nnoremap gd *:FZF -i -q <C-R>=expand("<cword>")<CR><CR>
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>m :History<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
@@ -33,8 +34,8 @@ nnoremap <silent> <leader>B :Windows<cr>
 nnoremap <silent> <leader>F :FZF ~ <cr>
 let g:fzf_layout = { 'down': '~30%' }
 let $FZF_DEFAULT_OPTS .= "
-      \ --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33
-      \ --color info:33,prompt:33,pointer:166,marker:166,spinner:33"
+      \ --color fg:245,bg:230,hl:33,fg+:75,bg+:230,hl+:33
+      \ --color info:33,prompt:33,pointer:75,marker:166,spinner:33"
 
       " \ --color fg:-1,bg:-1,hl:33,fg+:235,bg+:254,hl+:33
       " \ --color info:136,prompt:136,pointer:230,marker:230,spinner:136"
@@ -382,9 +383,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nmap <silent> gd <Plug>(coc-definition)
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" StatusLine 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Customize statusline colors 
-hi StatusLine ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
+hi StatusLine ctermbg=33 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
 hi StatusLineNC ctermbg=250 ctermfg=254 guibg=#d0d0d0 guifg=#444444
+" :echo synIDattr(synIDtrans(hlID('StatusLineNC')), 'fg')
 
 " hi StatusLine ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
 " hi StatusLineNC ctermbg=252 ctermfg=238 guibg=#d0d0d0 guifg=#444444
