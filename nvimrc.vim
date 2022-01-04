@@ -1,6 +1,14 @@
 let mapleader = ' '
 set nocompatible
 
+" Python 3
+if executable('python3')
+    let g:python3_host_prog = exepath('python3')
+endif
+if has('pythonx')
+    set pyxversion=3
+endif
+
 source ~/.nvim_me/plug.vim
 source ~/.nvim_me/helper.vim
 source ~/.nvim_me/scripts/BufOnly.vim
@@ -227,13 +235,17 @@ let g:any_jump_disable_vcs_ignore = 0
 noremap <leader>o "+y
 noremap <leader>d "+d
 
+
 vnoremap <C-c> "+y
+vnoremap <C-C> "+y
 vnoremap <C-d> "+d
 
 "Filename to clipboard
 noremap <silent> <leader>cp :let @*=expand("%")<CR>
 noremap <silent> <leader>ct :let @*="bin/bundle exec rspec ".join([expand("%"), line(".")], ":")<CR>
 noremap <silent> <leader>cu :let @*="bin/bundle exec cucumber ".join([expand("%"), line(".")], ":")<CR>
+noremap <silent> <leader>cr :let @*="rubocop ".join([expand("%")])<CR>
+noremap <silent> <leader>ca :let @*="rubocop --auto-correct ".join([expand("%")])<CR>
 "nmap <c-l> :let @*=expand("%:p")<CR>
 
 " Copy yanked text to clipboard
@@ -302,10 +314,15 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set background=light
-colorscheme solarized8
 let g:solarized_termcolors=256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+colorscheme solarized8
+" if exists('+termguicolors')
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   set termguicolors
+" endif
+let g:solarized_visibility = "low"
+let g:solarized_contrast = "low"
 
 highlight VertSplit cterm=NONE
 " syntax enable
@@ -455,7 +472,5 @@ nnoremap TS :vs term://tig status<cr><cr>
 nnoremap TB :vs term://tig blame<cr><cr>
 nnoremap TL :vs term://tig log %<cr><cr>
 
-nnoremap <silent> GB :Gblame<cr>
-nnoremap <silent> GS :Gstatus<cr>
-nnoremap <silent> GS :Gstatus<cr>
-nnoremap <silent> GD :Gdiff<cr>
+nnoremap <silent> GB :Git blame<cr>
+nnoremap <silent> GD :Git diff<cr>
