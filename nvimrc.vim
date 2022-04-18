@@ -34,7 +34,7 @@ nmap ga <Plug>(EasyAlign)
 " FZF
 """"""""""""""""""""""""""""""""""""""""""
 " nnoremap gd *:FZF -i --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33 -q <C-R>=expand("<cword>")<CR><CR>
-nnoremap gd *:FZF -i -q <C-R>=expand("<cword>")<CR><CR>
+nnoremap Gd *:FZF -i -q <C-R>=expand("<cword>")<CR><CR>
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>m :History<cr>
 nnoremap <silent> <leader>b :Buffers<cr>
@@ -417,10 +417,25 @@ hi StatusLineNC ctermbg=250 ctermfg=254 guibg=#d0d0d0 guifg=#444444
 " COMPLETER 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
+let deoplete#tag#cache_limit_size = 5000000
 set completeopt-=preview
 set complete=.,w,b,u,t,k
 set complete-=t
 set pumheight=20                " Set popup menu max height"
+" call deoplete#custom#option('sources', {
+" \ '_': ['buffer', 'tag'],
+" \ 'rb': ['buffer', 'tag'],
+" \})
+" call deoplete#custom#source(
+" \ 'tag', 'matchers', ['matcher_head'])
+" " Do not complete too short words
+" call deoplete#custom#source(
+" \ 'tag', 'min_pattern_length', 2)
+
+
+    " call deoplete#custom#source('tag',
+		" \ 'filetypes', ['c', 'rb'])
+
 inoremap <Tab> <C-N>
 inoremap <S-Tab> <C-P>
 " inoremap <C-]> <C-X><C-]>
